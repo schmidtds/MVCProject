@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BlogIt.Areas.Admin.ViewModels;
 using BlogIt.Infrastructure;
+using BlogIt.Models;
+using NHibernate.Linq;
 
 namespace BlogIt.Areas.Admin.Controllers
 {
@@ -13,7 +16,7 @@ namespace BlogIt.Areas.Admin.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return View(new UsersIndex{Users = Database.Session.Query<User>().ToList()});
         }
     }
 }
